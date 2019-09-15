@@ -9,7 +9,9 @@
   "author": "JP Lomas, jp@lomas.doctor",
   "license": "MIT",
   "devDependencies": {
-    "browser-sync": "^2.23.6",
+    "@babel/core": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "browser-sync": "^2.26.7",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.1.0",
@@ -22,8 +24,6 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^1.12.1",
     "gulp-uglify": "^3.0.2",
-    "merge-stream": "^1.0.1",
-    "@babel/core": "^7.6.0",
-    "@babel/preset-env": "^7.6.0"
+    "merge-stream": "^1.0.1"
   }
 }

@@ -1,2 +1,5 @@
 *.docx
 *.xlsm
+*.csv
+ranges.js
+dist/
