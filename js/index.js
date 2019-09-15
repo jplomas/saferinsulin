@@ -131,7 +131,7 @@ var secondFunction = function (current, previous, rate) {
     // April 2019 ^^^
     // Also checked April 2019
     newR = Math.round(newR * 10) / 10;
-    result = newR + 'ml/hr';
+    var result = newR + 'ml/hr';
     if (A11 === '1') { result += '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Follow hypoglycaemia protocol.<br>Give IV dextrose immediately & ensure background nutrition or glucose intake.<br>Recheck blood glucose in 15, 30 and 60 minutes until stable.'; }
     if (A11 === '2') { result += '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Give IV dextrose immediately if blood glucose < 4mmol/L & ensure background nutrition or glucose intake.<br> If blood glucose is greater than 4mmol/l then it is falling rapidly. Recheck blood glucose in 30 and 60 minutes.'; }
     if (A11 === '3') { result += '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Ensure background nutrition or glucose intake. Recheck blood glucose in 1 hour.'; }
@@ -267,7 +267,7 @@ $(document).ready(function () {
                        </div>
                        <p>For these values, the calculator generated the following output:</p>
                        <div class="ui secondary segment">
-                       <p><strong>New Insulin rate:</strong><br />
+                       <p><strong>Advice:</strong><br />
                        ${firstFunction(gov.current.toString())}</p>
                        </div><br>`);
       } else {
@@ -317,9 +317,9 @@ $(document).ready(function () {
   $('.doCalcA').click(function () {
     var value = parseFloat($('#d1').dropdown('get value'));
     console.log('BG = ' + value);
-    var result = firstFunction(value);
-    // add a governance token -- this will need storing in a DB somewhere...
-    if (result) {
+    if (value) {
+      var result = firstFunction(value);
+      // add a governance token -- this will need storing in a DB somewhere...
       var n = new Date();
       var hex = glucoseToHex(value) + '-a' + getHexDate(n);
       result = result + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">' + hex + '</span>';
@@ -342,7 +342,9 @@ $(document).ready(function () {
   });
   $('.doCalc').click(function () {
     var c = calc();
-    $('.adviceB').html(c);
+    if (c) {
+      $('.adviceB').html(c);
+    }
   });
   $('.resetC').click(function () {
     $('#frm1').trigger('reset');
