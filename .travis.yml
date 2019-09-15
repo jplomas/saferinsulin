@@ -16,8 +16,9 @@ deploy:
   bucket: saferinsulin.org
   local-dir: dist
   skip_cleanup: true
-  acl: public-read
-  cache_control: "no-cache"
+  acl: "public-read"
+  detect_encoding: true
+  cache_control: "max-age=31536000"
   on:
     branch: master
     repo: jplomas/saferinsulin
