@@ -3,3 +3,4 @@
 *.csv
 ranges.js
 dist/
+node_modules/
