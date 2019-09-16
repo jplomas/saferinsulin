@@ -1,5 +1,5 @@
 /* eslint no-console: 0 */
-/* global $ */
+/* global $, ClipboardJS */
 
 function hexDateConvert(fr) {
   var dt = new Date();
@@ -76,7 +76,7 @@ var firstFunction = function (value) {
   if (bg > 15 && bg <= 18) { result = 'Start insulin at 3 units/hr'; }
   if (bg > 18) { result = 'Start insulin at 4 units/hr'; }
   return result;
-}
+};
 
 var secondFunction = function (current, previous, rate) {
   if (!(Number.isNaN(current)) && !(Number.isNaN(previous)) && !(Number.isNaN(rate))) {
@@ -154,7 +154,7 @@ var secondFunction = function (current, previous, rate) {
     return result;
   }
   return false;
-}
+};
 
 var calc = function () {
   var result = null;
@@ -164,7 +164,7 @@ var calc = function () {
   console.log('rate = ' + rate);
   console.log('current = ' + current);
   console.log('previous = ' + previous);
-  result = secondFunction(current, previous, rate)
+  result = secondFunction(current, previous, rate);
   if (result) {
     var n = new Date();
 
@@ -186,7 +186,7 @@ var calc = function () {
     var hex = rateToHex(rate) + glucoseToHex(current) + glucoseToHex(previous) + '-' + c + getHexDate(n);
 
     result = result + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">' + hex + '</span>';
-    result = result + '<br><span id="copyAdvice" data-clipboard-target="#foo">Copy code to clipboard</span>';
+    result += '<br><span id="copyAdvice" data-clipboard-target="#foo"><button class="ui mini button"><i class="ui copy icon"></i> Copy code to clipboard</button></span>';
     return result;
   }
   return false;
@@ -194,25 +194,23 @@ var calc = function () {
 
 $(document).ready(function () {
   $('.message .close')
-  .on('click', function() {
-    $(this)
-      .closest('.message')
-      .transition('fade')
-    ;
-  })
-;
+    .on('click', function () {
+      $(this)
+        .closest('.message')
+        .transition('fade');
+    });
   var clipboard = new ClipboardJS('#copyAdvice');
-  clipboard.on('success', function(e) {
-      console.info('Action:', e.action);
-      console.info('Text:', e.text);
-      console.info('Trigger:', e.trigger);
-      $('.message').show();
-      e.clearSelection();
+  clipboard.on('success', function (e) {
+    console.info('Action:', e.action);
+    console.info('Text:', e.text);
+    console.info('Trigger:', e.trigger);
+    $('.message').show();
+    e.clearSelection();
   });
 
-  clipboard.on('error', function(e) {
-      console.error('Action:', e.action);
-      console.error('Trigger:', e.trigger);
+  clipboard.on('error', function (e) {
+    console.error('Action:', e.action);
+    console.error('Trigger:', e.trigger);
   });
   var oldBrowser = $.reject({
     reject: {
@@ -241,7 +239,7 @@ $(document).ready(function () {
     var gov = governance(code);
     if (!gov) {
       $('#res').html('<p>Invalid code entered.<br /><br /></p>');
-      return false
+      return false;
     }
     if (gov.last) {
       $('#res').html(`
@@ -255,25 +253,26 @@ $(document).ready(function () {
                      <p>For these values, the calculator generated the following output:</p>
                      <div class="ui secondary segment">
                      <p><strong>New Insulin rate:</strong><br />
-                     ${secondFunction(gov.current.toString(),gov.last.toString(), gov.rate.toString())}</p>
+                     ${secondFunction(gov.current.toString(), gov.last.toString(), gov.rate.toString())}</p>
                      </div><br>`);
-    } else {
-      if (gov.current) {
-        $('#res').html(`
-                       <p>Code <strong>${code}</strong> was generated <strong>${gov.date}</strong></p>
-                       <p>The user entered the following data:</p>
-                       <div class="ui secondary segment">
-                       <p>Current blood glucose [mmol/L]: <strong>${gov.current}</strong></p>
-                       </div>
-                       <p>For these values, the calculator generated the following output:</p>
-                       <div class="ui secondary segment">
-                       <p><strong>Advice:</strong><br />
-                       ${firstFunction(gov.current.toString())}</p>
-                       </div><br>`);
-      } else {
-        $('#res').html('<p>Invalid code entered.<br /><br /></p>');
-      }
+      return true;
     }
+    if (gov.current) {
+      $('#res').html(`
+                     <p>Code <strong>${code}</strong> was generated <strong>${gov.date}</strong></p>
+                     <p>The user entered the following data:</p>
+                     <div class="ui secondary segment">
+                     <p>Current blood glucose [mmol/L]: <strong>${gov.current}</strong></p>
+                     </div>
+                     <p>For these values, the calculator generated the following output:</p>
+                     <div class="ui secondary segment">
+                     <p><strong>Advice:</strong><br />
+                     ${firstFunction(gov.current.toString())}</p>
+                     </div><br>`);
+      return true;
+    }
+    $('#res').html('<p>Invalid code entered.<br /><br /></p>');
+    return false;
   });
   $('#b1').click(function () {
     $('#b1').removeClass('basic');
@@ -311,7 +310,7 @@ $(document).ready(function () {
   });
   $('form').keyup(function () {
     $('.adviceA').html('Please select a blood glucose reading from the dropdown above then click the calculate button');
-    $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');  
+    $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');
   });
 
   $('.doCalcA').click(function () {
@@ -323,9 +322,9 @@ $(document).ready(function () {
       var n = new Date();
       var hex = glucoseToHex(value) + '-a' + getHexDate(n);
       result = result + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">' + hex + '</span>';
-      result = result + '<br><span id="copyAdvice" data-clipboard-target="#foo">Copy code to clipboard</span>';
+      result += '<br><span id="copyAdvice" data-clipboard-target="#foo"><button class="ui mini button"><i class="ui copy icon"></i> Copy code to clipboard</button></span>';
+      $('.adviceA').html(result);
     }
-    $('.adviceA').html(result);
   });
 
   $('#d2').dropdown('setting', 'onChange', function () {
