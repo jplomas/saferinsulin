@@ -4,13 +4,16 @@
 	margin-bottom: 0;
 }
 .dimmed.dimmable > .ui.animating.dimmer, .dimmed.dimmable > .ui.visible.dimmer, .ui.active.dimmer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.dimmed.dimmable > .ui.modals.dimmer.visible {
+  display: flex !important;
 }
 .ui.modal,
 .ui.active.modal {
-  margin: 0 auto!important;
+  margin: auto!important;
   top: auto !important;
   left: auto !important;
   transform-origin: center !important;
@@ -19,3 +22,4 @@
 @-ms-viewport{
   width: device-width;
 }
+body{ max-height: 100vh; }
