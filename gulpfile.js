@@ -13,6 +13,11 @@ var gulp = require('gulp'),
 
   var babel = require('gulp-babel');
 
+  var randHex = function() {
+    var r = Math.floor(Math.random()*1000000000).toString(16)
+    return r;
+  };
+
 // Clean task
 gulp.task('clean', function() {
   return del(['dist', 'assets/css/app.css']);
@@ -102,8 +107,8 @@ gulp.task('js:minify', function () {
 gulp.task('replaceHtmlBlock', function () {
   return gulp.src(['index.html', 'governance.html'])
     .pipe(htmlreplace({
-      js: 'js/index.min.js',
-      css: 'css/style.min.css'
+      js: `js/index.min.js?v=${randHex()}`,
+      css: `css/style.min.css?v=${randHex()}`
     }))
     .pipe(gulp.dest('dist/'));
 });
