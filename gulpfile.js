@@ -50,6 +50,13 @@ gulp.task('resources', function() {
     .pipe(gulp.dest('./dist/resources'))
 });
 
+gulp.task('images', function() {
+  return  gulp.src([
+    './images/**/*'
+  ])
+    .pipe(gulp.dest('./dist/images'))
+});
+
 // vendor task
 gulp.task('vendor', gulp.parallel('vendor:css', 'vendor:js'));
 
@@ -140,7 +147,7 @@ gulp.task('dev', function browserDev(done) {
 });
 
 // Build task
-gulp.task("build", gulp.series(gulp.parallel('css:minify', 'js:minify', 'vendor', 'resources'), 'vendor:build', function copyAssets() {
+gulp.task("build", gulp.series(gulp.parallel('css:minify', 'js:minify', 'vendor', 'resources', 'images'), 'vendor:build', function copyAssets() {
   return gulp.src([
     '*.html'
   ], { base: './'})
