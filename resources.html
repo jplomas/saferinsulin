@@ -31,11 +31,70 @@
   <div class="ui container">
     <div class="spacer"></div>
     <div class="ui header">
-      <h1>Insulin calculator</h1>
+      <h1>Critical Care Insulin Calculator</h1>
     </div>
     <div class="spacer"></div>
     <div class="ui segment">
-      <p>Placeholder page for resources</p>
+      <div class="ui link cards">
+        <div class="card" id="card1">
+          <div class="image">
+            <img src="images/Insulin_Calculator_Training.png">
+          </div>
+          <div class="content">
+            <div class="header">Insulin Calculator Training</div>
+            <div class="meta">
+              <span class="date">Powerpoint Presentation</span>
+            </div>
+            <div class="description">
+              Training package in the use of the saferinsulin.org Critical Care insulin calculator
+            </div>
+          </div>
+          <div class="extra content">
+            <span>
+              Download
+            </span>
+          </div>
+        </div>
+        <div class="card" id="card2">
+          <div class="image">
+            <img src="images/Bitesize_Hypoglycaemia.png">
+          </div>
+          <div class="content">
+            <div class="header">Hypoglycaemia Management Teaching</div>
+            <div class="meta">
+              <span class="date">Powerpoint Presentation</span>
+            </div>
+            <div class="description">
+              Educational slides outling the clinical management of acute hypoglycaemia in Critical Care.
+            </div>
+          </div>
+          <div class="extra content">
+            <span>
+              Download
+            </span>
+          </div>
+        </div>
+        <div class="card" id="card3">
+          <div class="image">
+            <img src="images/Hypo_Poster.png">
+          </div>
+          <div class="content">
+            <div class="header">Hypoglycaemia Awareness Posters</div>
+            <div class="meta">
+              <span class="date">PDF</span>
+            </div>
+            <div class="description">
+              Posters to raise awareness of interventions to reduce the risk of hypoglycaemic episodes.
+            </div>
+          </div>
+          <div class="extra content">
+
+            <span>
+              Download
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <div style="height: 200px;"></div>
@@ -78,6 +137,22 @@
   <script src='assets/js/vendor/jquery.browser.js'></script>
   <script src='assets/js/vendor/reject.js'></script>
   <script src='assets/js/vendor/semantic.js'></script>
+  <script>
+    $(document).ready(function () {
+      $('.card').click(function(e) {
+        var id = e.currentTarget.id;
+        if (id === 'card1') {
+          location = 'resources/Insulin_Calculator_Training.pptx';
+        }
+        if (id === 'card2') {
+          location = 'resources/Bitesize_Hypoglycaemia.pptx';
+        }
+        if (id === 'card3') {
+          location = 'resources/HYPOGLYCAEMIC_AWARENESS_WEEK_SLIDES.pdf';
+        }
+      });
+    });
+  </script>
 </body>
 
 </html>

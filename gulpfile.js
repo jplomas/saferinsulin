@@ -43,6 +43,13 @@ gulp.task('vendor:css', function() {
     .pipe(gulp.dest('./dist/css'))
 });
 
+gulp.task('resources', function() {
+  return  gulp.src([
+    './resources/**/*'
+  ])
+    .pipe(gulp.dest('./dist/resources'))
+});
+
 // vendor task
 gulp.task('vendor', gulp.parallel('vendor:css', 'vendor:js'));
 
@@ -133,7 +140,7 @@ gulp.task('dev', function browserDev(done) {
 });
 
 // Build task
-gulp.task("build", gulp.series(gulp.parallel('css:minify', 'js:minify', 'vendor'), 'vendor:build', function copyAssets() {
+gulp.task("build", gulp.series(gulp.parallel('css:minify', 'js:minify', 'vendor', 'resources'), 'vendor:build', function copyAssets() {
   return gulp.src([
     '*.html'
   ], { base: './'})

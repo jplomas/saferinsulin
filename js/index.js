@@ -80,10 +80,7 @@ var firstFunction = function (value) {
 
 var secondFunction = function (current, previous, rate) {
   if (!(Number.isNaN(current)) && !(Number.isNaN(previous)) && !(Number.isNaN(rate))) {
-    // meat of the logic processing here
-    // var diff = current - previous;
     var A11 = 'LOGIC ERROR';
-    // below are v4 logic expressions - need reviewing...
     if (current <= 2.2) { A11 = '1'; }
     if (current >= 2.3 && current <= 4) { A11 = '2'; }
     if (current >= 4.1 && current < 6.1 && previous <= 6) { A11 = '3'; }
@@ -109,8 +106,6 @@ var secondFunction = function (current, previous, rate) {
     if (current > 14 && previous > 14 && (current - previous) <= 0 && (current - previous) >= -1.9) { A11 = '34'; }
     if (current > 14 && previous > 14 && (current - previous) < -1.9 && (current - previous) > -4) { A11 = '18'; }
     if (current > 14 && previous > 14 && (current - previous) <= -4) { A11 = '33'; }
-    // ... to here ^^^^
-    // ~~~~ verified below April 2019`
     var newR = -1;
     if (A11 === '1') { newR = 0; }
     if (A11 === '2') { newR = 0; }
@@ -128,9 +123,8 @@ var secondFunction = function (current, previous, rate) {
     if (A11 === '38') { newR = rate + (2 * (current / previous)); }
     if (A11 === '53') { newR = rate * 0.5; }
     if (A11 === '54') { newR = rate; }
-    // April 2019 ^^^
-    // Also checked April 2019
     newR = Math.round(newR * 10) / 10;
+    if (newR > 18) { newR = 18; }
     var result = newR + 'ml/hr';
     if (A11 === '1') { result += '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Follow hypoglycaemia protocol.<br>Give IV dextrose immediately & ensure background nutrition or glucose intake.<br>Recheck blood glucose in 15, 30 and 60 minutes until stable.'; }
     if (A11 === '2') { result += '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Give IV dextrose immediately if blood glucose < 4mmol/L & ensure background nutrition or glucose intake.<br> If blood glucose is greater than 4mmol/l then it is falling rapidly. Recheck blood glucose in 30 and 60 minutes.'; }
@@ -146,11 +140,8 @@ var secondFunction = function (current, previous, rate) {
     if (A11 === '36') { result += '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 2 hours.'; }
     if (A11 === '37') { result += '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
     if (A11 === '38') { result += '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
-    if (A11 === '53') { result += '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.<br>Caution as blood glucose is falling and approaching bottom of target range.'; }
+    if (A11 === '53') { result += '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.<br>Caution as blood glucose is approaching bottom of target range.'; }
     if (A11 === '54') { result += '<br><br><strong>Additional advice:</strong><br>If blood glucose and calorie intake have been stable for last 2 hours move to 2 hourly BG checks. '; }
-    // ^^^ this bit checked April 2019 too
-    // end of meat
-
     return result;
   }
   return false;
@@ -253,7 +244,7 @@ $(document).ready(function () {
                      <p>For these values, the calculator generated the following output:</p>
                      <div class="ui secondary segment">
                      <p><strong>New Insulin rate:</strong><br />
-                     ${secondFunction(gov.current.toString(), gov.last.toString(), gov.rate.toString())}</p>
+                     ${secondFunction(gov.current, gov.last, gov.rate)}</p>
                      </div><br>`);
       return true;
     }
@@ -267,7 +258,7 @@ $(document).ready(function () {
                      <p>For these values, the calculator generated the following output:</p>
                      <div class="ui secondary segment">
                      <p><strong>Advice:</strong><br />
-                     ${firstFunction(gov.current.toString())}</p>
+                     ${firstFunction(gov.current)}</p>
                      </div><br>`);
       return true;
     }
