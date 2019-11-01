@@ -10,7 +10,8 @@
     "build": "npm run gulp && npm run browserify"
   },
   "files": [
-    "/dist/js/insulin-calc.js", "/js/insulin-calc.js"
+    "/dist/js/insulin-calc.js",
+    "/js/insulin-calc.js"
   ],
   "author": "JP Lomas, jp@lomas.doctor",
   "license": "MIT",
@@ -19,6 +20,7 @@
     "@babel/preset-env": "^7.6.0",
     "browser-sync": "^2.26.7",
     "browserify": "^16.5.0",
+    "chai": "^4.2.0",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.1.0",
@@ -31,6 +33,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^1.12.1",
     "gulp-uglify": "^3.0.2",
+    "js-yaml": "^3.13.1",
     "merge-stream": "^1.0.1",
     "mocha": "^6.2.2",
     "nyc": "^14.1.1"
