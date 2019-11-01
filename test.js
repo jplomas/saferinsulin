@@ -41,19 +41,21 @@ describe('Governance function', () => {
   });
   it('When called with 9403b059-b81c6b will report correct output', () => {
     const r = calc.governance('9403b059-b81c6b');
+    const d = r.date.substring(0,r.date.length - 6)
     assert.equal(r.function, 'b');
     assert.equal(r.current, 5.9);
     assert.equal(r.last, 8.9);
     assert.equal(r.rate, 14.8);
-    assert.equal(r.date, 'Fri Nov 01 2019 13:21:00 GMT+0000 (GMT)');
+    assert.equal(r.date, 'Fri Nov 01 2019 13:21:00 GMT+0000');
   });
   it('When called with 0bc-a81c71 will report correct output', () => {
     const r = calc.governance('0bc-a81c71');
+    const d = r.date.substring(0,r.date.length - 6)
     assert.equal(r.function, 'a');
     assert.equal(r.current, 18.8);
     assert.equal(r.last, null);
     assert.equal(r.rate, null);
-    assert.equal(r.date, 'Fri Nov 01 2019 13:27:00 GMT+0000 (GMT)');
+    assert.equal(d, 'Fri Nov 01 2019 13:27:00 GMT+0000');
   });
 });
 
