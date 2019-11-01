@@ -5,7 +5,8 @@ cache:
   directories:
   - node_modules
 script:
-- gulp
+- npm run test
+- npm run build
 deploy:
   provider: gcs
   access_key_id: GOOG1EZJMYMWQGJASCASF7BTALY7KGYYMI7YS5VCHDGJJXFF46FJRNII4OFZY

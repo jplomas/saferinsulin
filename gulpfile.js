@@ -104,7 +104,7 @@ gulp.task('css:minify', gulp.series('scss', function cssMinify() {
 // Minify Js
 gulp.task('js:minify', function () {
   return gulp.src([
-    './js/*.js'
+    './js/*dex.js'
   ])
     .pipe(babel({
       presets: ['@babel/env']
@@ -122,7 +122,8 @@ gulp.task('replaceHtmlBlock', function () {
   return gulp.src(['index.html', 'governance.html'])
     .pipe(htmlreplace({
       js: `js/index.min.js?v=${randHex()}`,
-      css: `css/style.min.css?v=${randHex()}`
+      css: `css/style.min.css?v=${randHex()}`,
+      calc: `js/insulin-calc.js?v=${randHex()}`,
     }))
     .pipe(gulp.dest('dist/'));
 });

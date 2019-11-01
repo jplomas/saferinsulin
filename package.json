@@ -1,17 +1,24 @@
 {
-  "name": "saferinsulin",
-  "version": "1.0.0",
+  "name": "insulin-calc",
+  "version": "1.0.1",
   "description": "Safer Insulin Project",
-  "main": "index.js",
+  "main": "/js/insulin-calc.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/mocha/bin/mocha ./test.js",
+    "gulp": "gulp",
+    "browserify": "./node_modules/browserify/bin/cmd.js -d -s calc -o ./dist/js/insulin-calc.js ./js/insulin-calc.js",
+    "build": "npm run gulp && npm run browserify"
   },
+  "files": [
+    "/dist/js/insulin-calc.js", "/js/insulin-calc.js"
+  ],
   "author": "JP Lomas, jp@lomas.doctor",
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
     "browser-sync": "^2.26.7",
+    "browserify": "^16.5.0",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.1.0",
@@ -24,6 +31,8 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^1.12.1",
     "gulp-uglify": "^3.0.2",
-    "merge-stream": "^1.0.1"
+    "merge-stream": "^1.0.1",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
   }
 }
