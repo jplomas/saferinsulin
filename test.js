@@ -46,7 +46,7 @@ describe('Governance function', () => {
     assert.equal(r.current, 5.9);
     assert.equal(r.last, 8.9);
     assert.equal(r.rate, 14.8);
-    assert.equal(r.date, 'Fri Nov 01 2019 13:21:00 GMT+0000');
+    assert.equal(d, 'Fri Nov 01 2019 13:21:00 GMT+0000');
   });
   it('When called with 0bc-a81c71 will report correct output', () => {
     const r = calc.governance('0bc-a81c71');
