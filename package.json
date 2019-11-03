@@ -1,17 +1,34 @@
 {
   "name": "insulin-calc",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Safer Insulin Project",
-  "main": "/js/insulin-calc.js",
+  "main": "/dist/js/insulin-calc.js",
+  "browser": "/js/insulin-calc.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test.js",
     "gulp": "gulp",
     "browserify": "./node_modules/browserify/bin/cmd.js -d -s calc -o ./dist/js/insulin-calc.js ./js/insulin-calc.js",
-    "build": "npm run gulp && npm run browserify"
+    "build": "npm run gulp && npm run browserify",
+    "nyc": "nyc --reporter=html --reporter=text mocha ./test.js",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
+  },
+  "homepage": "https://saferinsulin.org",
+  "bugs": {
+    "url": "https://github.com/jplomas/saferinsulin/issues",
+    "email": "jp@lomas.doctor"
   },
   "files": [
     "/dist/js/insulin-calc.js",
     "/js/insulin-calc.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jplomas/saferinsulin.git"
+  },
+  "keywords": [
+    "insulin",
+    "calculator",
+    "medical"
   ],
   "author": "JP Lomas, jp@lomas.doctor",
   "license": "MIT",
@@ -21,21 +38,23 @@
     "browser-sync": "^2.26.7",
     "browserify": "^16.5.0",
     "chai": "^4.2.0",
+    "coveralls": "^3.0.3",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^4.1.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^3.10.0",
-    "gulp-cssnano": "^2.1.2",
+    "gulp-cssnano": "^2.1.3",
     "gulp-html-replace": "^1.6.2",
     "gulp-minify-html": "^1.0.6",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
+    "gulp-sass": "^3.2.1",
     "gulp-sourcemaps": "^1.12.1",
     "gulp-uglify": "^3.0.2",
     "js-yaml": "^3.13.1",
     "merge-stream": "^1.0.1",
     "mocha": "^6.2.2",
+    "mocha-lcov-reporter": "^1.3.0",
     "nyc": "^14.1.1"
   }
 }

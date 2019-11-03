@@ -7,6 +7,8 @@ cache:
 script:
 - npm run test
 - npm run build
+after_success:
+  - npm run coverage
 deploy:
   provider: gcs
   access_key_id: GOOG1EZJMYMWQGJASCASF7BTALY7KGYYMI7YS5VCHDGJJXFF46FJRNII4OFZY

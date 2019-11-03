@@ -11,25 +11,7 @@ var gocalc = function () {
   console.log('previous = ' + previous);
   result = calc.ongoingRate(current, previous, rate).rate + calc.ongoingRate(current, previous, rate).advice;
   if (result) {
-    var n = new Date();
-
-    // [a] = pt not on insulin
-    // [b] = pt on insulin
-    // [c] = stopped & restarted
-    // [3 hex] = reading x
-    // [3 hex] = reading y
-    // [2 hex] = rate
-    // [X hex] = date
-
-    var c = null;
-    if ($('#b2').hasClass('teal')) {
-      c = 'b';
-    } else {
-      c = 'c';
-    }
-
-    var hex = calc.rateToHex(rate) + calc.glucoseToHex(current) + calc.glucoseToHex(previous) + '-' + c + calc.getHexDate(n);
-
+    var hex = calc.ongoingRate(current, previous, rate).hex;
     result = result + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">' + hex + '</span>';
     result += '<br><span id="copyAdvice" data-clipboard-target="#foo"><button class="ui mini button"><i class="ui copy icon"></i> Copy code to clipboard</button></span>';
     return result;
@@ -164,9 +146,7 @@ $(document).ready(function () {
     if (value) {
       var r = calc.startingRate(value);
       var result = r.advice;
-      // add a governance token -- this will need storing in a DB somewhere...
-      var n = new Date();
-      var hex = calc.glucoseToHex(value) + '-a' + calc.getHexDate(n);
+      var hex = r.hex;
       result = result + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">' + hex + '</span>';
       result += '<br><span id="copyAdvice" data-clipboard-target="#foo"><button class="ui mini button"><i class="ui copy icon"></i> Copy code to clipboard</button></span>';
       $('.adviceA').html(result);

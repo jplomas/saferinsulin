@@ -59,6 +59,19 @@ function governance(hex) {
   };
 }
 
+function createGovernance(obj) {
+  var n = new Date();
+  if (obj.f === 'a') {
+    var hex = glucoseToHex(obj.glucose) + '-a' + getHexDate(n);
+    return hex;
+  }
+  if (obj.f === 'b') {
+    var h = rateToHex(obj.rate) + glucoseToHex(obj.current) + glucoseToHex(obj.previous) + '-b' + getHexDate(n);
+    return h;
+  }
+  return false;
+}
+
 var startingRate = function (value) {
   var bg = parseFloat(value);
   var result = false;
@@ -91,7 +104,8 @@ var startingRate = function (value) {
     result = false;
     rate = '';
   }
-  return { advice: result, rate: rate };
+  var hex = createGovernance({ f: 'a', glucose: value });
+  return { advice: result, rate: rate, hex: hex };
 };
 
 var ongoingRate = function (current, previous, rate) {
@@ -162,6 +176,8 @@ var ongoingRate = function (current, previous, rate) {
     if (A11 === '38') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
     if (A11 === '53') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.<br>Caution as blood glucose is approaching bottom of target range.'; }
     if (A11 === '54') { r.advice = '<br><br><strong>Additional advice:</strong><br>If blood glucose and calorie intake have been stable for last 2 hours move to 2 hourly BG checks. '; }
+    var hex = createGovernance({ f: 'b', rate: rate, current: current, previous: previous });
+    r.hex = hex;
     return r;
   }
   return false;
