@@ -10,7 +10,7 @@
     "browserify": "./node_modules/browserify/bin/cmd.js -d -s calc -o ./dist/js/insulin-calc.js ./js/insulin-calc.js",
     "build": "npm run gulp && npm run browserify",
     "nyc": "nyc --reporter=html --reporter=text mocha ./test.js",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc --reporter=text-lcov mocha ./test.js | coveralls"
   },
   "homepage": "https://saferinsulin.org",
   "bugs": {
