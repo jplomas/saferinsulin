@@ -8,6 +8,22 @@ describe('Function when starting patient on Insulin', () => {
     const r = calc.startingRate(30);
     assert.equal(r.rate, 4);
   });
+  it('When glucose is 11.2 should start at 1ml/hr', () => {
+    const r = calc.startingRate(11.2);
+    assert.equal(r.rate, 1);
+  });
+  it('When glucose is 14.5 should start at 2ml/hr', () => {
+    const r = calc.startingRate(14.5);
+    assert.equal(r.rate, 2);
+  });
+  it('When glucose is 15.6 should start at 3ml/hr', () => {
+    const r = calc.startingRate(15.6);
+    assert.equal(r.rate, 3);
+  });
+  it('When glucose is 6.4 should state insulin nor required', () => {
+    const r = calc.startingRate(6.4);
+    assert.equal(r.rate, 'N/A');
+  });
   it('When glucose greater than 30.0 should start at 4ml/hr', () => {
     const r = calc.startingRate(60);
     assert.equal(r.rate, 4);
@@ -71,5 +87,13 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
   it('When called with 2 missing parameters report false', () => {
     const r = calc.ongoingRate(10);
     assert.equal(r, false);
+  });
+  it('When called with 3 NaN parameters report false', () => {
+    const r = calc.ongoingRate(NaN, NaN, NaN);
+    assert.equal(r, false);
+  });
+  it('When called with hypoglycaemic current reading, rate is 0', () => {
+    const r = calc.ongoingRate(1.3, 12.1, 1.0);
+    assert.equal(r.rateNum, 0);
   });
 });
