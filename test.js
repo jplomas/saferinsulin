@@ -92,6 +92,14 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(NaN, NaN, NaN);
     assert.equal(r, false);
   });
+  it('When called with 2 NaN parameters report false', () => {
+    const r = calc.ongoingRate(NaN, 8, NaN);
+    assert.equal(r, false);
+  });
+  it('When called with 1 NaN parameters report false', () => {
+    const r = calc.ongoingRate(NaN, 8, 1);
+    assert.equal(r, false);
+  });
   it('When called with hypoglycaemic current reading (1.3), rate is 0', () => {
     const r = calc.ongoingRate(1.3, 12.1, 1.0);
     assert.equal(r.rateNum, 0);
@@ -123,5 +131,23 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
   it('When current=11.1, previous=11.4, rate=2.2 => new rate 2.2', () => {
     const r = calc.ongoingRate(11.1, 11.4, 2.2);
     assert.equal(r.rateNum, 2.2);
+  });
+  it('When current=5.2, previous=5, rate=2.2 => new rate 0', () => {
+    const r = calc.ongoingRate(5.2, 5, 2.2);
+    assert.equal(r.rateNum, 0);
+  });
+  it('When current=6.2, previous=8.1, rate=2.2 => new rate 1.1', () => {
+    const r = calc.ongoingRate(6.2, 8.1, 2.2);
+    assert.equal(r.rateNum, 1.1);
+  });
+  it('When current=7.1, previous=7.1, rate=2.2 => new rate 0', () => {
+    const r = calc.ongoingRate(7.1, 7.1, 2.2);
+    assert.equal(r.rateNum, 1.1);
+  });
+});
+describe('createGovernance ancillary function', () => {
+  it('Returns false when passed with unknown algorithm', () => {
+    const r = calc.createGovernance({f: 'x'});
+    assert.equal(r, false);
   });
 });

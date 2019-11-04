@@ -183,4 +183,4 @@ var ongoingRate = function (current, previous, rate) {
   return false;
 };
 
-module.exports = { ongoingRate, startingRate, governance, rateToHex, glucoseToHex, getHexDate };
+module.exports = { ongoingRate, startingRate, governance, rateToHex, glucoseToHex, getHexDate, createGovernance };
