@@ -104,4 +104,24 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(8.6, 8.9, 1.0);
     assert.equal(r.rateNum, 1);
   });
+  it('When all is stable, carry on...', () => {
+    const r = calc.ongoingRate(8.6, 8.9, 1.0);
+    assert.equal(r.rateNum, 1);
+  });
+  it('When current=8, previous=11, rate=5 => new rate 3.6', () => {
+    const r = calc.ongoingRate(8, 11, 5);
+    assert.equal(r.rateNum, 3.6);
+  });
+  it('When current=8.2, previous=20, rate=1 => new rate 0.4', () => {
+    const r = calc.ongoingRate(8.2, 20, 1);
+    assert.equal(r.rateNum, 0.4);
+  });
+  it('When current=16, previous=11.5, rate=2 => new rate 4.8', () => {
+    const r = calc.ongoingRate(16, 11.5, 2);
+    assert.equal(r.rateNum, 4.8);
+  });
+  it('When current=11.1, previous=11.4, rate=2.2 => new rate 2.2', () => {
+    const r = calc.ongoingRate(11.1, 11.4, 2.2);
+    assert.equal(r.rateNum, 2.2);
+  });
 });
