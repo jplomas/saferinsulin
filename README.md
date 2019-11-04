@@ -2,7 +2,8 @@
 
 [![npm version](https://badge.fury.io/js/insulin-calc.svg)](https://badge.fury.io/js/insulin-calc)
 [![Build Status](https://travis-ci.org/jplomas/saferinsulin.svg?branch=master)](https://travis-ci.org/jplomas/saferinsulin)
-![Coverage](https://coveralls.io/repos/github/jplomas/saferinsulin/badge.svg?branch=master)
+[![Coverage](https://coveralls.io/repos/github/jplomas/saferinsulin/badge.svg?branch=master)](https://coveralls.io/github/jplomas/saferinsulin)
+[![MIT license](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/jplomas/saferinsulin/blob/master/LICENSE)
 
 This respository houses the website and underlying module code for an insulin infusion rate calculator currently being evaluated.
 

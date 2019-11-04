@@ -92,8 +92,16 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(NaN, NaN, NaN);
     assert.equal(r, false);
   });
-  it('When called with hypoglycaemic current reading, rate is 0', () => {
+  it('When called with hypoglycaemic current reading (1.3), rate is 0', () => {
     const r = calc.ongoingRate(1.3, 12.1, 1.0);
     assert.equal(r.rateNum, 0);
+  });
+  it('When called with hypoglycaemic current reading (2.4), rate is 0', () => {
+    const r = calc.ongoingRate(2.4, 12.1, 1.0);
+    assert.equal(r.rateNum, 0);
+  });
+  it('When all is stable, carry on...', () => {
+    const r = calc.ongoingRate(8.6, 8.9, 1.0);
+    assert.equal(r.rateNum, 1);
   });
 });
