@@ -330,10 +330,19 @@
               </div>
             </div>
           </form>
-          <button class="ui basic red button resetC">Reset</button>
-          <button class="ui yellow button doCalcA">Calculate</button>
+          <div class="row">
+            <p><br />Does your patient have enteral feed or a glucose containing IV fluid running?</p>
+            No&nbsp;
+          <div class="ui toggle checkbox" id="CB1">
+            <input type="checkbox" name="runningGlucoseCheck">
+            <label>Yes</label>
+          </div>
+          <p>&nbsp;</p>
+        </div>
+          <button class="ui basic red button resetC rA" style="display: none;">Reset</button>
+          <button class="ui yellow button doCalcA" style="display: none;">Calculate</button>
           <div class="ui secondary segment">
-            <p><strong>Advice:<br></strong><span class="adviceA">Please select a blood glucose reading from the dropdown above then click the calculate button</span></p>
+            <p><strong>Advice:<br></strong><span class="adviceA">Intravenous insulin infusions require background nutrition to avoid hypoglycaemia. If enteral feed is interrupted arrange immediate glucose containing IV maintenance fluid. If no background feed or glucose containing fluid is available stop IV insulin and request urgent clinical review from the medical team.<br><br>If background nutrition is available, change the slider above to 'Yes' to activate the calculator.</span></p>
           </div>
         </div>
       </div>
@@ -1062,11 +1071,20 @@
               </div>
             </div>
           </form>
-          <button class="ui basic red button resetC">Reset</button>
-          <button class="ui yellow button doCalc">Calculate</button>
+          <div class="row">
+            <p><br />Does your patient have enteral feed or a glucose containing IV fluid running?</p>
+            No&nbsp;
+          <div class="ui toggle checkbox" id="CB2">
+            <input type="checkbox" name="runningGlucoseCheck">
+            <label>Yes</label>
+          </div>
+          <p>&nbsp;</p>
+        </div>
+          <button class="ui basic red button resetC rB" style="display: none;">Reset</button>
+          <button class="ui yellow button doCalc" style="display: none;">Calculate</button>
           <div class="ui secondary segment">
-            <p><strong>New Insulin rate:<br></strong><span class="adviceB">
-          Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button</span></p>
+            <p><strong>Advice:<br></strong><span class="adviceB">
+              Intravenous insulin infusions require background nutrition to avoid hypoglycaemia. If enteral feed is interrupted arrange immediate glucose containing IV maintenance fluid. If no background feed or glucose containing fluid is available stop IV insulin and request urgent clinical review from the medical team.<br><br>If background nutrition is available, change the slider above to 'Yes' to activate the calculator.</span></p>
           </div>
         </div>
       </div>

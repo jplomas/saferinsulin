@@ -173,4 +173,38 @@ $(document).ready(function () {
     $('#frm2').trigger('reset');
     $('.ui.form .ui.dropdown').dropdown('restore defaults');
   });
+  $('#CB1').click(function () {
+    console.log('Checkbox status: ', $('#CB1').checkbox('is checked'));
+    if ($('#CB1').checkbox('is checked') === true) {
+      $('.doCalcA').hide();
+      $('.rA').hide();
+      $('#frm1').trigger('reset');
+      $('#frm2').trigger('reset');
+      $('.ui.form .ui.dropdown').dropdown('restore defaults');
+      $('.adviceA').html('Intravenous insulin infusions require background nutrition to avoid hypoglycaemia. If enteral feed is interrupted arrange immediate glucose containing IV maintenance fluid. If no background feed or glucose containing fluid is available stop IV insulin and request urgent clinical review from the medical team.<br><br>If background nutrition is available, change the slider above to \'Yes\' to activate the calculator.');
+    } else {
+      $('.doCalcA').show();
+      $('.rA').show();
+      $('.adviceA').html('Please select a blood glucose reading from the dropdown above then click the calculate button');
+    }
+  });
+  $('#CB2').click(function () {
+    console.log('Checkbox status: ', $('#CB2').checkbox('is checked'));
+    if ($('#CB2').checkbox('is checked') === true) {
+      $('.doCalc').hide();
+      $('.rB').hide();
+      $('#frm1').trigger('reset');
+      $('#frm2').trigger('reset');
+      $('.ui.form .ui.dropdown').dropdown('restore defaults');
+      $('.adviceB').html('Intravenous insulin infusions require background nutrition to avoid hypoglycaemia. If enteral feed is interrupted arrange immediate glucose containing IV maintenance fluid. If no background feed or glucose containing fluid is available stop IV insulin and request urgent clinical review from the medical team.<br><br>If background nutrition is available, change the slider above to \'Yes\' to activate the calculator.');
+    } else {
+      $('.doCalc').show();
+      $('.rB').show();
+      $('.adviceB').html('Please select a blood glucose reading from the dropdown above then click the calculate button');
+    }
+  });
+  $('#CB1').checkbox();
+  $('#CB1').checkbox('uncheck')
+  $('#CB2').checkbox();
+  $('#CB2').checkbox('uncheck')
 });
