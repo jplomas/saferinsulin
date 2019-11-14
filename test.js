@@ -152,9 +152,17 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(13.1, 24, 2.0);
     assert.equal(r.rateNum, 1.1);
   });
+  it('When current=5.8, previous=7, rate=2.0 => new rate 0', () => {
+    const r = calc.ongoingRate(5.8, 7, 2.0);
+    assert.equal(r.rateNum, 0);
+  });
   it('Upper limit of rate returned is 18ml/hr', () => {
     const r = calc.ongoingRate(17.1, 17.1, 19);
     assert.equal(r.rateNum, 18);
+  });
+  it('Returns false when 3 NaNs passed', () => {
+    const r = calc.ongoingRate(NaN, NaN, NaN);
+    assert.equal(r, false);
   });
 });
 describe('createGovernance ancillary function', () => {
