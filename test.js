@@ -184,6 +184,22 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(7, 3.1, 0.1);
     assert.equal(r.rateNum, 0);
   });
+  it('When current=13, previous=15, rate=2 => carry on at rate 2', () => {
+    const r = calc.ongoingRate(13, 15, 2);
+    assert.equal(r.rateNum, 2);
+  });
+  it('When current=12.3, previous=17.5, rate=2 => new rate 1.4', () => {
+    const r = calc.ongoingRate(12.3, 17.5, 2);
+    assert.equal(r.rateNum, 1.4);
+  });
+  it('When current=15, previous=13, rate=2 => new rate 4', () => {
+    const r = calc.ongoingRate(15, 13, 2);
+    assert.equal(r.rateNum, 4);
+  });
+  it('When current=16, previous=15, rate=3 => new rate 5.1', () => {
+    const r = calc.ongoingRate(16, 15, 3);
+    assert.equal(r.rateNum, 5.1);
+  });
   it('Upper limit of rate returned is 18ml/hr', () => {
     const r = calc.ongoingRate(17.1, 17.1, 19);
     assert.equal(r.rateNum, 18);
