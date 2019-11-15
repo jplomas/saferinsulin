@@ -1,5 +1,5 @@
 /* global describe, it */
-const { expect } = require('chai');
+// const { expect } = require('chai');
 const { assert } = require('chai');
 const calc = require('./js/insulin-calc');
 
@@ -108,11 +108,7 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(2.4, 12.1, 1.0);
     assert.equal(r.rateNum, 0);
   });
-  it('When all is stable, carry on...', () => {
-    const r = calc.ongoingRate(8.6, 8.9, 1.0);
-    assert.equal(r.rateNum, 1);
-  });
-  it('When all is stable, carry on...', () => {
+  it('When all is stable, carry on... (current=8.6, previous=8.9, rate=1.0)', () => {
     const r = calc.ongoingRate(8.6, 8.9, 1.0);
     assert.equal(r.rateNum, 1);
   });
@@ -128,8 +124,32 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(16, 11.5, 2);
     assert.equal(r.rateNum, 4.8);
   });
+  it('When current=11, previous=10.9, rate=1 => new rate 2', () => {
+    const r = calc.ongoingRate(11, 10.9, 1);
+    assert.equal(r.rateNum, 2);
+  });
+  it('When current=10.5, previous=12.7, rate=1 => new rate 0.8', () => {
+    const r = calc.ongoingRate(10.5, 12.7, 1);
+    assert.equal(r.rateNum, 0.8);
+  });
   it('When current=11.1, previous=11.4, rate=2.2 => new rate 2.2', () => {
     const r = calc.ongoingRate(11.1, 11.4, 2.2);
+    assert.equal(r.rateNum, 2.2);
+  });
+  it('When current=13, previous=10, rate=2 => new rate 4', () => {
+    const r = calc.ongoingRate(13, 10, 2);
+    assert.equal(r.rateNum, 4);
+  });
+  it('When current=13, previous=12.9, rate=2 => new rate 3', () => {
+    const r = calc.ongoingRate(13, 12.9, 2);
+    assert.equal(r.rateNum, 3);
+  });
+  it('When current=12.5, previous=13, rate=2 => new rate 3', () => {
+    const r = calc.ongoingRate(12.5, 13, 2);
+    assert.equal(r.rateNum, 3);
+  });
+  it('When current=11.7, previous=12.7, rate=2.2 => carry on at rate 2.2', () => {
+    const r = calc.ongoingRate(11.7, 12.7, 2.2);
     assert.equal(r.rateNum, 2.2);
   });
   it('When current=5.2, previous=5, rate=2.2 => new rate 0', () => {
@@ -156,6 +176,14 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
     const r = calc.ongoingRate(5.8, 7, 2.0);
     assert.equal(r.rateNum, 0);
   });
+  it('When current=7, previous=3.1, rate=0 => new rate 0', () => {
+    const r = calc.ongoingRate(7, 3.1, 0);
+    assert.equal(r.rateNum, 0);
+  });
+  it('When current=7, previous=3.1, rate=0.1 => new rate 0', () => {
+    const r = calc.ongoingRate(7, 3.1, 0.1);
+    assert.equal(r.rateNum, 0);
+  });
   it('Upper limit of rate returned is 18ml/hr', () => {
     const r = calc.ongoingRate(17.1, 17.1, 19);
     assert.equal(r.rateNum, 18);
@@ -167,7 +195,7 @@ describe('Function when adjusting an ongoing Insulin infusion', () => {
 });
 describe('createGovernance ancillary function', () => {
   it('Returns false when passed with unknown algorithm', () => {
-    const r = calc.createGovernance({f: 'x'});
+    const r = calc.createGovernance({ f: 'x' });
     assert.equal(r, false);
   });
 });

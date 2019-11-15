@@ -1,4 +1,4 @@
-/* eslint no-console: 0 */
+/* eslint no-console: 0, max-len: 0, prefer-destructuring: 0 */
 /* global $, ClipboardJS, calc */
 
 var gocalc = function () {
@@ -204,7 +204,7 @@ $(document).ready(function () {
     }
   });
   $('#CB1').checkbox();
-  $('#CB1').checkbox('uncheck')
+  $('#CB1').checkbox('uncheck');
   $('#CB2').checkbox();
-  $('#CB2').checkbox('uncheck')
+  $('#CB2').checkbox('uncheck');
 });

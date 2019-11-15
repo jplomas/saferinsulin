@@ -1,4 +1,4 @@
-/* eslint no-console: 0 */
+/* eslint no-console: 0, max-len: 0 */
 
 function hexDateConvert(fr) {
   var dt = new Date();
@@ -110,16 +110,16 @@ var startingRate = function (value) {
 
 var ongoingRate = function (current, previous, rate) {
   var r = {};
-  if (!(current) || !(previous) || !(rate)) { return false; }
-  if ((Number.isNaN(current)) || (Number.isNaN(previous)) || (Number.isNaN(rate))) { return false; }
+  if (arguments.length !== 3) { return false; }
+  if ((Number.isNaN(parseFloat(current))) || (Number.isNaN(parseFloat(previous))) || (Number.isNaN(parseFloat(rate)))) { return false; }
   var A11 = 'LOGIC ERROR';
   if (current <= 2.2) { A11 = '1'; }
   if (current >= 2.3 && current <= 4) { A11 = '2'; }
   if (current >= 4.1 && current < 6.1 && previous <= 6) { A11 = '3'; }
   if (current >= 4.1 && current < 6.1 && previous > 6 && (current - previous) < -1.5) { A11 = '2'; }
   if (current >= 4.1 && current < 6.1 && previous > 6 && (current - previous) >= -1.5 && (current - previous) < 0) { A11 = '3'; }
-  if (current >= 6.1 && current < 8 && previous < 1.5) { A11 = '29'; }
-  if (current >= 6.1 && current < 8 && previous > 1.5) { A11 = '53'; }
+  if (current >= 6.1 && current < 8 && rate < 1.5) { A11 = '29'; }
+  if (current >= 6.1 && current < 8 && rate > 1.5) { A11 = '53'; }
   if ((current >= 8 && current < 10.1) || (previous < 8 && previous > 10)) { A11 = '10'; }
   if (current >= 8 && current < 10.1 && previous >= 8 && previous <= 10) { A11 = '54'; }
   if (current >= 10.1 && current < 12.1 && previous <= 12 && (current - previous) < 0) { A11 = '17'; }
@@ -176,9 +176,16 @@ var ongoingRate = function (current, previous, rate) {
   if (A11 === '38') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
   if (A11 === '53') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.<br>Caution as blood glucose is approaching bottom of target range.'; }
   if (A11 === '54') { r.advice = '<br><br><strong>Additional advice:</strong><br>If blood glucose and calorie intake have been stable for last 2 hours move to 2 hourly BG checks. '; }
-  var hex = createGovernance({ f: 'b', rate: rate, current: current, previous: previous });
+  var hex = createGovernance({
+    f: 'b',
+    rate: rate,
+    current: current,
+    previous: previous,
+  });
   r.hex = hex;
   return r;
 };
 
-module.exports = { ongoingRate, startingRate, governance, rateToHex, glucoseToHex, getHexDate, createGovernance };
+module.exports = {
+  ongoingRate, startingRate, governance, rateToHex, glucoseToHex, getHexDate, createGovernance,
+};
