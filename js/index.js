@@ -110,6 +110,12 @@ $(document).ready(function () {
     $('#b2').addClass('basic');
     $('#b3').removeClass('teal');
     $('#b3').addClass('basic');
+    $('.message').hide();
+    $('#frm1').trigger('reset');
+    $('#frm2').trigger('reset');
+    $('.ui.form .ui.dropdown').dropdown('restore defaults');
+    $('#CB1').checkbox();
+    $('#CB1').checkbox('uncheck');
   });
   $('#b2').click(function () {
     $('#b2').removeClass('basic');
@@ -120,20 +126,18 @@ $(document).ready(function () {
     $('#b1').addClass('basic');
     $('#b3').removeClass('teal');
     $('#b3').addClass('basic');
-  });
-  $('#b3').click(function () {
-    $('#b3').removeClass('basic');
-    $('#b3').addClass('teal');
-    $('#c2').show();
-    $('#c1').hide();
-    $('#b1').removeClass('teal');
-    $('#b1').addClass('basic');
-    $('#b2').removeClass('teal');
-    $('#b2').addClass('basic');
+    $('.message').hide();
+    $('#frm1').trigger('reset');
+    $('#frm2').trigger('reset');
+    $('.ui.form .ui.dropdown').dropdown('restore defaults');
+    $('#CB2').checkbox();
+    $('#CB2').checkbox('uncheck');
   });
 
   $('#d1').dropdown('setting', 'onChange', function () {
-    $('.adviceA').html('Please select a blood glucose reading from the dropdown above then click the calculate button');
+    if ($('#CB1').checkbox('is checked') === true) {
+      $('.adviceA').html('Please select a blood glucose reading from the dropdown above then click the calculate button');
+    }
   });
   $('form').keyup(function () {
     $('.adviceA').html('Please select a blood glucose reading from the dropdown above then click the calculate button');
@@ -154,13 +158,19 @@ $(document).ready(function () {
   });
 
   $('#d2').dropdown('setting', 'onChange', function () {
-    $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');
+    if ($('#CB2').checkbox('is checked') === true) {
+      $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');
+    }
   });
   $('#d3').dropdown('setting', 'onChange', function () {
-    $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');
+    if ($('#CB2').checkbox('is checked') === true) {
+      $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');
+    }
   });
   $('#d4').dropdown('setting', 'onChange', function () {
-    $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');
+    if ($('#CB2').checkbox('is checked') === true) {
+      $('.adviceB').html('Please select current and previous blood glucose readings and the current insulin rate from the dropdown above then click the calculate button');
+    }
   });
   $('.doCalc').click(function () {
     var c = gocalc();
