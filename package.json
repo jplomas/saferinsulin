@@ -8,7 +8,8 @@
     "test": "./node_modules/mocha/bin/mocha ./test.js",
     "gulp": "gulp",
     "browserify": "./node_modules/browserify/bin/cmd.js -d -s calc -o ./dist/js/insulin-calc.js ./js/insulin-calc.js",
-    "build": "npm run gulp && npm run browserify",
+    "cp": "cp ./dist/js/insulin-calc.js ./app/www/js/insulin-calc.js",
+    "build": "npm run gulp && npm run browserify && npm run cp",
     "nyc": "nyc --reporter=html --reporter=text mocha ./test.js",
     "coverage": "nyc --reporter=text-lcov mocha ./test.js | coveralls"
   },

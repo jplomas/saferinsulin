@@ -41,6 +41,7 @@ gulp.task('vendor:css', function() {
     './css/**/*'
   ])
     .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./app/www/css'))
 });
 
 gulp.task('resources', function() {
@@ -48,6 +49,7 @@ gulp.task('resources', function() {
     './resources/**/*'
   ])
     .pipe(gulp.dest('./dist/resources'))
+    .pipe(gulp.dest('./app/www/resources'))
 });
 
 gulp.task('images', function() {
@@ -55,6 +57,7 @@ gulp.task('images', function() {
     './images/**/*'
   ])
     .pipe(gulp.dest('./dist/images'))
+    .pipe(gulp.dest('./app/www/images'))
 });
 
 // vendor task
@@ -68,9 +71,11 @@ gulp.task('vendor:build', function() {
     './assets/js/vendor/reject.js',
     './assets/js/vendor/semantic.js',
     './assets/js/vendor/underscore.js',
-    './assets/js/vendor/jquery.browser.js'
+    './assets/js/vendor/jquery.browser.js',
+    './js/insulin-calc.js'
   ])
-    .pipe(gulp.dest('./dist/assets/js/vendor'));
+    .pipe(gulp.dest('./dist/assets/js/vendor'))
+    .pipe(gulp.dest('./app/www/assets/js/vendor'));
   return jsStream;
 })
 
@@ -98,13 +103,14 @@ gulp.task('css:minify', gulp.series('scss', function cssMinify() {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./dist/css'))
+    .pipe(gulp.dest('./app/www/css'))
     .pipe(browserSync.stream());
 }));
 
 // Minify Js
 gulp.task('js:minify', function () {
   return gulp.src([
-    './js/*dex.js'
+    './js/index.js'
   ])
     .pipe(babel({
       presets: ['@babel/env']
@@ -114,6 +120,7 @@ gulp.task('js:minify', function () {
       suffix: '.min'
     }))
     .pipe(gulp.dest('./dist/js'))
+    .pipe(gulp.dest('./app/www/js'))
     .pipe(browserSync.stream());
 });
 
@@ -125,7 +132,8 @@ gulp.task('replaceHtmlBlock', function () {
       css: `css/style.min.css?v=${randHex()}`,
       calc: `js/insulin-calc.js?v=${randHex()}`,
     }))
-    .pipe(gulp.dest('dist/'));
+    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./app/www/'));
 });
 
 // Configure the browserSync task and watch file path for change
@@ -152,7 +160,8 @@ gulp.task("build", gulp.series(gulp.parallel('css:minify', 'js:minify', 'vendor'
   return gulp.src([
     '*.html'
   ], { base: './'})
-    .pipe(gulp.dest('dist'));
+    .pipe(gulp.dest('dist'))
+    .pipe(gulp.dest('app/www'));
 }));
 
 // Default task

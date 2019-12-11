@@ -6,3 +6,6 @@ dist/
 node_modules/
 /.nyc_output
 /coverage
+app/www/
+app/platforms/
+app/plugins/
