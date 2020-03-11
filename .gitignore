@@ -1,6 +1,7 @@
 *.docx.old
 *.xlsm
 *.csv
+app.zip
 ranges.js
 dist/
 node_modules/

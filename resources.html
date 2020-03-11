@@ -160,7 +160,11 @@
   <script src='assets/js/vendor/jquery.browser.js'></script>
   <script src='assets/js/vendor/reject.js'></script>
   <script src='assets/js/vendor/semantic.js'></script>
+  <script src='assets/js/vendor/fastclick.js'></script>
   <script>
+    $(function () {
+      FastClick.attach(document.body);
+    });
     $(document).ready(function () {
       $('.card').click(function(e) {
         var id = e.currentTarget.id;

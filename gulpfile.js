@@ -29,7 +29,8 @@ gulp.task('vendor:js', function() {
     './node_modules/bootstrap/dist/js/*',
     './node_modules/jquery/dist/*',
     '!./node_modules/jquery/dist/core.js',
-    './node_modules/popper.js/dist/umd/popper.*'
+    './node_modules/popper.js/dist/umd/popper.*',
+    './node_modules/fastclick/lib/*'
   ])
     .pipe(gulp.dest('./assets/js/vendor'));
 });
@@ -72,6 +73,7 @@ gulp.task('vendor:build', function() {
     './assets/js/vendor/semantic.js',
     './assets/js/vendor/underscore.js',
     './assets/js/vendor/jquery.browser.js',
+    './assets/js/vendor/fastclick.js',
     './js/insulin-calc.js'
   ])
     .pipe(gulp.dest('./dist/assets/js/vendor'))

@@ -1,5 +1,5 @@
 /* eslint no-console: 0, max-len: 0, prefer-destructuring: 0 */
-/* global $, ClipboardJS, calc */
+/* global $, ClipboardJS, calc, FastClick */
 
 var gocalc = function () {
   var result = null;
@@ -18,6 +18,10 @@ var gocalc = function () {
   }
   return false;
 };
+
+$(function () {
+  FastClick.attach(document.body);
+});
 
 $(document).ready(function () {
   $('.message .close')
@@ -47,7 +51,7 @@ $(document).ready(function () {
       msie: true, // Microsoft Internet Explorer
       opera: false, // Opera
       konqueror: true, // Konqueror (Linux)
-      unknown: true, // Everything else
+      unknown: false, // Everything else
     },
   }); // Customized Browsers
   if (oldBrowser) {
