@@ -1,6 +1,7 @@
 *.docx.old
 *.xlsm
 *.csv
+*.sketch
 app.zip
 ranges.js
 dist/
