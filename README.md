@@ -9,7 +9,22 @@ This respository houses the website and underlying module code for an insulin in
 
 The website is live at [https://saferinsulin.org](https://saferinsulin.org)
 
+It is provided to medical professionals for use at their own discretion: preparing the requirements for CE marking is underway and the tool has been used successfully in the Greater Manchester Critical Care Network.
+
 ## Technicals
+
+### Building and deploying a mirror
+
+This is positively encouraged, as it gives resiliance to the availability of the calculator.  To build:
+
+- ensure yarn installed
+- clone repository
+- run ``yarn``
+- run ``yarn run build``
+- the website will be in the ``dist/`` folder, the app version ready to be packaged with Phonegap Build (or other Cordova-based toolset) will be in the ``app/`` folder
+- if using Phonegap Build, ``yarn run zip`` will prepare the app for upload
+
+### NPM module for calculator component
 
 The module can be used within a node.js project by installing from npm: ```npm install insulin-calc``` or by including the browserified module ```dist/js/insulin-calc.js``` in a web project.
 
