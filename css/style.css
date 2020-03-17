@@ -22,4 +22,11 @@
 @-ms-viewport{
   width: device-width;
 }
-body{ max-height: 100vh; }
+body{
+  max-height: 100vh;
+  background:url('../images/1024x1024.png') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

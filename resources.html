@@ -30,9 +30,13 @@
   </div>
   <div class="ui container">
     <div class="spacer"></div>
-    <div class="ui header">
-      <h1>Critical Care Insulin Calculator</h1>
-    </div>
+    <h2 class="ui header dash_header">
+      <img src="/images/76x76.svg">
+      <div class="content">
+        Safer Insulin
+        <div class="sub header">Critical Care Insulin Calculator</div>
+      </div>
+    </h2>
     <div class="spacer"></div>
     <div class="ui segment">
       <div class="ui link cards">
@@ -121,18 +125,20 @@
     </div>
   </div>
   <div style="height: 200px;"></div>
-  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')" ;>&copy; 2019 - MIT licensed</div>
-  <div class="ui basic modal" id="info">
+  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')" ;>&copy; 2019-2020 // MIT licensed open-source software</div>
+  <div class="ui longer modal" id="info">
+    <div class="scrolling content">
     <h2>About this tool</h2>
     <p>&copy; Dr JP Lomas & Dr Rhodri Harris, 2019-2020</p>
-    <a href="https://lomas.doctor">https://lomas.doctor</a>
+    <a href="https://lomas.doctor">https://lomas.doctor</a><br>
+    <a href="https://github.com/jplomas/saferinsulin">Full source code on Github</a>
     <br><br>
     Contributors:
-    <strong>Dr JP Lomas, Dr Rhodri Harris, Dr Tony Thomas</strong>
+    <blockquote><strong>Dr JP Lomas<br>Dr Rhodri Harris<br>Dr Tony Thomas</strong></blockquote>
     <div class="ui inverted red segment">
       For use when trained and with consultant permission
     </div>
-    <blockquote>Permission is hereby granted, free of charge, to any person obtaining a copy
+    <strong>MIT license</strong><blockquote>Permission is hereby granted, free of charge, to any person obtaining a copy
       of this software and associated documentation files (the "Software"), to deal
       in the Software without restriction, including without limitation the rights
       to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -149,6 +155,7 @@
       LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
       OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
       SOFTWARE.</blockquote>
+    </div>
     <div class="actions">
       <div class="ui ok button">
         <i class="remove icon"></i>
