@@ -30,11 +30,11 @@
   </div>
   <div class="ui container">
     <div class="spacer"></div>
-    <h2 class="ui header dash_header">
+    <h2 class="ui header dash_header" onclick="$('#info').modal('show')">
       <img src="/images/76x76.svg">
       <div class="content">
         Safer Insulin
-        <div class="sub header">Critical Care Insulin Calculator</div>
+        <div class="sub header">for Adult Critical Care</div>
       </div>
     </h2>
     <div class="spacer"></div>
@@ -61,7 +61,7 @@
     </div>
   </div>
   <div style="height: 200px;"></div>
-  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')" ;>&copy; 2019-2020 // MIT licensed open-source software</div>
+  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')">&copy; 2019-2020 JP Lomas &amp; R Harris <i class="info icon"></i></div>
   <div class="ui longer modal" id="info">
     <div class="scrolling content">
     <h2>About this tool</h2>

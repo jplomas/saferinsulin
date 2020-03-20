@@ -30,11 +30,11 @@
   </div>
   <div class="ui container">
     <div class="spacer"></div>
-    <h2 class="ui header dash_header">
+    <h2 class="ui header dash_header" onclick="$('#info').modal('show')">
       <img src="/images/76x76.svg">
       <div class="content">
         Safer Insulin
-        <div class="sub header">Critical Care Insulin Calculator</div>
+        <div class="sub header">for Adult Critical Care</div>
       </div>
     </h2>
     <div class="spacer"></div>
@@ -59,6 +59,27 @@
             </span>
           </div>
         </div>
+
+        <div class="card" id="card5">
+          <div class="image">
+            <img src="images/QRG_covid.png">
+          </div>
+          <div class="content">
+            <div class="header">COVID-19 Quick Reference Guide</div>
+            <div class="meta">
+              <span class="date">PDF Document</span>
+            </div>
+            <div class="description">
+              Quick reference SOP outling glycaemic control in COVID-19 patients
+            </div>
+          </div>
+          <div class="extra content">
+            <span>
+              Download
+            </span>
+          </div>
+        </div>
+
         <div class="card" id="card2">
           <div class="image">
             <img src="images/Bitesize_Hypoglycaemia.png">
@@ -93,7 +114,6 @@
             </div>
           </div>
           <div class="extra content">
-
             <span>
               Download
             </span>
@@ -114,7 +134,6 @@
             </div>
           </div>
           <div class="extra content">
-
             <span>
               Download
             </span>
@@ -125,7 +144,7 @@
     </div>
   </div>
   <div style="height: 200px;"></div>
-  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')" ;>&copy; 2019-2020 // MIT licensed open-source software</div>
+  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')">&copy; 2019-2020 JP Lomas &amp; R Harris <i class="info icon"></i></div>
   <div class="ui longer modal" id="info">
     <div class="scrolling content">
     <h2>About this tool</h2>
@@ -186,6 +205,9 @@
         }
         if (id === 'card4') {
           location = 'resources/SOP_template_for_glucose_management_in_critical_care.docx';
+        }
+        if (id === 'card5') {
+          location = 'resources/QRG_covid.pdf';
         }
       });
     });

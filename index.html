@@ -30,11 +30,11 @@
   </div>
   <div class="ui container">
     <div class="spacer"></div>
-    <h2 class="ui header dash_header">
+    <h2 class="ui header dash_header" onclick="$('#info').modal('show')">
       <img src="/images/76x76.svg">
       <div class="content">
         Safer Insulin
-        <div class="sub header">Critical Care Insulin Calculator</div>
+        <div class="sub header">for Adult Critical Care</div>
       </div>
     </h2>
     <div class="spacer"></div>
@@ -42,6 +42,7 @@
       <div class="ui header"><i class="warning icon"></i>
         <div class="content">For use when trained and with consultant permission</div></div>
     </div>
+    <div class="ui fluid primary button" onclick="$('#covid').modal('show')">COVID-19 Quick Reference <i class="right arrow icon"></i></div>
     <div class="spacer"></div>
     <div class="ui segment">
       <h4>Select current status:</h4>
@@ -1102,7 +1103,77 @@
     </div>
     <p>Code copied to clipboard: use Ctrl-V to paste into EPR.</p>
   </div>
-  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')" ;>&copy; 2019-2020 // MIT licensed open-source software</div>
+  <div class="ui fixed bottom sticky inverted message" onclick="$('#info').modal('show')">&copy; 2019-2020 JP Lomas &amp; R Harris <i class="info icon"></i></div>
+    <div class="ui longer modal" id="covid">
+      <div class="scrolling content">
+ 
+          <div class="header">
+          <h3>Hyperglycaemia in critically unwell adults with COVID-19</h3>
+          <p>
+            Patients admitted to Critical Care with COVID-19 appear to have a higher prevalence of diabetes.  Escalation of Critical Care capacity, a need for PPE and large patient numbers may increase the risk of harm from IV insulin.
+          </p>
+        </div>
+        
+        <div class="ui spacer"></div>
+
+        <div class="ui vertical steps">
+        <div class="step">
+          <i class="up arrow icon"></i>
+          <div class="content">
+            <div class="title">Higher threshold for starting IV insulin than usual</div>
+            <div class="description">If blood glucose > 12 mmol/L recheck in 1-2 hours</div>
+            <div class="description">If blood glucose remains > 12 mmol/L start IV insulin</div>
+          </div>
+        </div>
+        <div class="step">
+          <i class="target icon"></i>
+          <div class="content">
+            <div class="title">Target blood glucose range 6-12 mmol/L</div>
+            <div class="description">Using 50 units Actrapid in 50mls saline (prefilled where available)</div>
+          </div>
+        </div>
+        <div class="step">
+          <i class="calculator icon"></i>
+          <div class="content">
+            <div class="title">Calculate staring rate</div>
+            <div class="description">Using calculator at <strong>saferinsulin.org</strong>, app or local version</div>
+          <div class="description">Record calculator reference code in casenotes unless other clinical priorities
+            </div>
+            <div class="description">Use paper VRII if not trained</div>
+          </div>
+        </div>
+        <div class="step">
+          <i class="clock icon"></i>
+          <div class="content">
+            <div class="title">Check blood glucose every 1-2 hours</div>
+            <div class="description">Whilst IV insulin requires 1 hourly checks, should other clinical<br>demands take priority this can safely be extended to 2 hourly</div>
+          </div>
+        </div>
+        <div class="step">
+          <i class="calculator icon"></i>
+          <div class="content">
+            <div class="title">Calculate dose adjustment</div>
+            <div class="description">Using calculator or from paper VRII if not trained</div>
+          </div>
+        </div>
+        <div class="step">
+          <i class="warning icon"></i>
+          <div class="content">
+            <div class="title">Hypoglycaemia is a clinical emergency</div>
+            <div class="description">Ensure PRN 50ml of 50% glucose or alternative emergency treatment<br>
+              is easily accessible at all times where IV insulin is being delivered.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="actions">
+      <div class="ui ok button">
+        <i class="remove icon"></i>
+        Close
+      </div>
+    </div>
+  </div>
+  
   <div class="ui longer modal" id="info">
     <div class="scrolling content">
     <h2>About this tool</h2>
