@@ -38,7 +38,7 @@ gulp.task('vendor:js', function() {
 // Copy font-awesome from node_modules into /fonts
 gulp.task('vendor:css', function() {
   return  gulp.src([
-    './css/semantic.min.css',
+    './css/fomantic.min.css',
     './css/**/*'
   ])
     .pipe(gulp.dest('./dist/css'))
