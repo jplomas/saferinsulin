@@ -70,7 +70,7 @@ gulp.task('vendor:build', function() {
     './assets/js/vendor/clipboard.js',
     './assets/js/vendor/jquery.js',
     './assets/js/vendor/reject.js',
-    './assets/js/vendor/semantic.js',
+    './assets/js/vendor/fomantic.js',
     './assets/js/vendor/underscore.js',
     './assets/js/vendor/jquery.browser.js',
     './assets/js/vendor/fastclick.js',
