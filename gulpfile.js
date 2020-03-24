@@ -160,7 +160,7 @@ gulp.task('dev', function browserDev(done) {
 // Build task
 gulp.task("build", gulp.series(gulp.parallel('css:minify', 'js:minify', 'vendor', 'resources', 'images'), 'vendor:build', function copyAssets() {
   return gulp.src([
-    '*.html'
+    '*.html', 'privacy.html'
   ], { base: './'})
     .pipe(gulp.dest('dist'))
     .pipe(gulp.dest('app/www'));
