@@ -1,0 +1,29 @@
+{
+  "name": "saferinsulin-api",
+  "version": "1.0.0",
+  "description": "saferinsulin.org project API",
+  "main": "app.js",
+  "scripts": {
+    "test": "test.js",
+    "start": "node ./bin/www"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jplomas/saferinsulin.git"
+  },
+  "author": "QRL contributors <info@theqrl.org> (https://theqrl.org)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jplomas/saferinsulin/issues"
+  },
+  "homepage": "https://github.com/jplomas/saferinsulin#readme",
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "^4.17.1",
+    "hbs": "^4.1.1",
+    "http-errors": "~1.6.3",
+    "insulin-calc": "^1.2.0",
+    "morgan": "~1.9.1"
+  }
+}

@@ -1,8 +1,8 @@
 {
   "name": "insulin-calc",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Safer Insulin Project",
-  "main": "/dist/js/insulin-calc.js",
+  "main": "/js/insulin-calc.js",
   "browser": "/js/insulin-calc.js",
   "scripts": {
     "test": "./node_modules/mocha/bin/mocha ./test.js",
@@ -20,7 +20,6 @@
     "email": "jp@lomas.doctor"
   },
   "files": [
-    "/dist/js/insulin-calc.js",
     "/js/insulin-calc.js"
   ],
   "repository": {
