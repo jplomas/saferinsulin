@@ -1,14 +1,12 @@
 language: node_js
 node_js:
 - 12
-cache:
-  directories:
-  - node_modules
 script:
-- npm run test
-- npm run build
+- yarn
+- yarn test
+- yarn build
 after_success:
-  - npm run coverage
+  - yarn coverage
 deploy:
   provider: gcs
   access_key_id: GOOG1EZJMYMWQGJASCASF7BTALY7KGYYMI7YS5VCHDGJJXFF46FJRNII4OFZY
