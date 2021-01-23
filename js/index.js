@@ -1,6 +1,17 @@
 /* eslint no-console: 0, max-len: 0, prefer-destructuring: 0 */
 /* global $, ClipboardJS, calc, FastClick */
 
+var parseResult = function (advice) {
+  var output = '';
+  if (advice.type === 'additional') {
+    output += '<br><br><strong>Additional advice:</strong><br>';
+  }
+  advice.text.forEach(function (element) {
+    output += element + '<br>';
+  });
+  return output;
+};
+
 var gocalc = function () {
   var result = null;
   var current = parseFloat($('#d2').dropdown('get value'));
@@ -9,10 +20,13 @@ var gocalc = function () {
   console.log('rate = ' + rate);
   console.log('current = ' + current);
   console.log('previous = ' + previous);
-  result = calc.ongoingRate(current, previous, rate).rate + calc.ongoingRate(current, previous, rate).advice;
+  result = calc.ongoingRate(current, previous, rate).rate + parseResult(calc.ongoingRate(current, previous, rate).advice);
   if (result) {
     var hex = calc.ongoingRate(current, previous, rate).hex;
-    result = result + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">' + hex + '</span>';
+    result = result
+      + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">'
+      + hex
+      + '</span>';
     result += '<br><span id="copyAdvice" data-clipboard-target="#foo"><button class="ui mini button"><i class="ui copy icon"></i> Copy code to clipboard</button></span>';
     return result;
   }
@@ -24,12 +38,9 @@ $(function () {
 });
 
 $(document).ready(function () {
-  $('.message .close')
-    .on('click', function () {
-      $(this)
-        .closest('.message')
-        .transition('fade');
-    });
+  $('.message .close').on('click', function () {
+    $(this).closest('.message').transition('fade');
+  });
   var clipboard = new ClipboardJS('#copyAdvice');
   clipboard.on('success', function (e) {
     console.info('Action:', e.action);
@@ -74,32 +85,33 @@ $(document).ready(function () {
     }
     if (gov.last) {
       $('#res').html(`
-                     <p>Code <strong>${code}</strong> was generated <strong>${gov.date}</strong></p>
-                     <p>The user entered the following data:</p>
-                     <div class="ui secondary segment">
-                     <p>Current blood glucose [mmol/L]: <strong>${gov.current}</strong></p>
-                     <p>Previous blood glucose [mmol/L]: <strong>${gov.last}</strong></p>
-                     <p>Current Insulin rate [ml/hr of 1 iU/ml]: <strong>${gov.rate}</strong></p>
-                     </div>
-                     <p>For these values, the calculator generated the following output:</p>
-                     <div class="ui secondary segment">
-                     <p><strong>New Insulin rate:</strong><br />
-                     ${calc.ongoingRate(gov.current, gov.last, gov.rate).rate + calc.ongoingRate(gov.current, gov.last, gov.rate).advice}</p>
-                     </div><br>`);
+        <p>Code <strong>${code}</strong> was generated <strong>${gov.date}</strong></p>
+        <p>The user entered the following data:</p>
+        <div class="ui secondary segment">
+        <p>Current blood glucose [mmol/L]: <strong>${gov.current}</strong></p>
+        <p>Previous blood glucose [mmol/L]: <strong>${gov.last}</strong></p>
+        <p>Current Insulin rate [ml/hr of 1 iU/ml]: <strong>${gov.rate}</strong></p>
+        </div>
+        <p>For these values, the calculator generated the following output:</p>
+        <div class="ui secondary segment">
+        <p><strong>New Insulin rate:</strong><br />
+        ${calc.ongoingRate(gov.current, gov.last, gov.rate).rate + parseResult(calc.ongoingRate(gov.current, gov.last, gov.rate).advice)}
+        </p>
+        </div><br>`);
       return true;
     }
     if (gov.current) {
       $('#res').html(`
-                     <p>Code <strong>${code}</strong> was generated <strong>${gov.date}</strong></p>
-                     <p>The user entered the following data:</p>
-                     <div class="ui secondary segment">
-                     <p>Current blood glucose [mmol/L]: <strong>${gov.current}</strong></p>
-                     </div>
-                     <p>For these values, the calculator generated the following output:</p>
-                     <div class="ui secondary segment">
-                     <p><strong>Advice:</strong><br />
-                     ${calc.startingRate(gov.current).advice}</p>
-                     </div><br>`);
+        <p>Code <strong>${code}</strong> was generated <strong>${gov.date}</strong></p>
+        <p>The user entered the following data:</p>
+        <div class="ui secondary segment">
+        <p>Current blood glucose [mmol/L]: <strong>${gov.current}</strong></p>
+        </div>
+        <p>For these values, the calculator generated the following output:</p>
+        <div class="ui secondary segment">
+        <p><strong>Advice:</strong><br />
+        ${parseResult(calc.startingRate(gov.current).advice)}</p>
+        </div><br>`);
       return true;
     }
     $('#res').html('<p>Invalid code entered.<br /><br /></p>');
@@ -157,7 +169,7 @@ $(document).ready(function () {
     console.log('BG = ' + value);
     if (value) {
       var r = calc.startingRate(value);
-      var result = r.advice;
+      var result = parseResult(r.advice);
       var hex = r.hex;
       result = result + '<br><br><strong>Calculation reference code (record in casenotes):</strong><br><span id="foo">' + hex + '</span>';
       result += '<br><span id="copyAdvice" data-clipboard-target="#foo"><button class="ui mini button"><i class="ui copy icon"></i> Copy code to clipboard</button></span>';

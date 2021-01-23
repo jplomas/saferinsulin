@@ -105,7 +105,7 @@ var startingRate = function (value) {
     rate = '';
   }
   var hex = createGovernance({ f: 'a', glucose: value });
-  return { advice: result, rate: rate, hex: hex };
+  return { advice: { type: 'normal', text: [result] }, rate: rate, hex: hex };
 };
 
 var ongoingRate = function (current, previous, rate) {
@@ -160,22 +160,22 @@ var ongoingRate = function (current, previous, rate) {
   var result = newR + 'ml/hr';
   r.rate = result;
   r.rateNum = newR;
-  if (A11 === '1') { r.advice = '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Follow hypoglycaemia protocol.<br>Give IV dextrose immediately & ensure background nutrition or glucose intake.<br>Recheck blood glucose in 15, 30 and 60 minutes until stable.'; }
-  if (A11 === '2') { r.advice = '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Give IV dextrose immediately if blood glucose < 4mmol/L & ensure background nutrition or glucose intake.<br> If blood glucose is greater than 4mmol/l then it is falling rapidly. Recheck blood glucose in 30 and 60 minutes.'; }
-  if (A11 === '3') { r.advice = '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Ensure background nutrition or glucose intake. Recheck blood glucose in 1 hour.'; }
-  if (A11 === '10') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.<br>If blood glucose has been between 6-10mmol consider 2 hourly blood glucose checks.'; }
-  if (A11 === '17') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour. '; }
-  if (A11 === '18') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1-2 hours.<br>(1 hour if drop in blood glucose > 2 mmol/L in last hour)'; }
-  if (A11 === '29') { r.advice = '<br><br><strong>Additional advice:</strong><br>STOP INSULIN FOR AT LEAST 1 HOUR<br>Restart insulin if blood glucose > 10mmol/L'; }
-  if (A11 === '32') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 2 hours.'; }
-  if (A11 === '33') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
-  if (A11 === '34') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
-  if (A11 === '35') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
-  if (A11 === '36') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 2 hours.'; }
-  if (A11 === '37') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
-  if (A11 === '38') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.'; }
-  if (A11 === '53') { r.advice = '<br><br><strong>Additional advice:</strong><br>Recheck blood glucose in 1 hour.<br>Caution as blood glucose is approaching bottom of target range.'; }
-  if (A11 === '54') { r.advice = '<br><br><strong>Additional advice:</strong><br>If blood glucose and calorie intake have been stable for last 2 hours move to 2 hourly BG checks. '; }
+  if (A11 === '1') { r.advice = { type: 'additional', text: ['STOP INSULIN FOR AT LEAST 1 HOUR', 'Follow hypoglycaemia protocol.', 'Give IV dextrose immediately & ensure background nutrition or glucose intake.', 'Recheck blood glucose in 15, 30 and 60 minutes until stable.'] }; }
+  if (A11 === '2') { r.advice = { type: 'additional', text: ['STOP INSULIN FOR AT LEAST 1 HOUR', 'Give IV dextrose immediately if blood glucose < 4mmol/L & ensure background nutrition or glucose intake.', ' If blood glucose is greater than 4mmol/l then it is falling rapidly. Recheck blood glucose in 30 and 60 minutes.'] }; }
+  if (A11 === '3') { r.advice = { type: 'additional', text: ['STOP INSULIN FOR AT LEAST 1 HOUR', 'Ensure background nutrition or glucose intake. Recheck blood glucose in 1 hour.'] }; }
+  if (A11 === '10') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour.', 'If blood glucose has been between 6-10mmol consider 2 hourly blood glucose checks.'] }; }
+  if (A11 === '17') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour. '] }; }
+  if (A11 === '18') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1-2 hours.', '(1 hour if drop in blood glucose > 2 mmol/L in last hour)'] }; }
+  if (A11 === '29') { r.advice = { type: 'additional', text: ['STOP INSULIN FOR AT LEAST 1 HOUR', 'Restart insulin if blood glucose > 10mmol/L'] }; }
+  if (A11 === '32') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 2 hours.'] }; }
+  if (A11 === '33') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour.'] }; }
+  if (A11 === '34') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour.'] }; }
+  if (A11 === '35') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour.'] }; }
+  if (A11 === '36') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 2 hours.'] }; }
+  if (A11 === '37') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour.'] }; }
+  if (A11 === '38') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour.'] }; }
+  if (A11 === '53') { r.advice = { type: 'additional', text: ['Recheck blood glucose in 1 hour.', 'Caution as blood glucose is approaching bottom of target range.'] }; }
+  if (A11 === '54') { r.advice = { type: 'additional', text: ['If blood glucose and calorie intake have been stable for last 2 hours move to 2 hourly BG checks. '] }; }
   var hex = createGovernance({
     f: 'b',
     rate: rate,
