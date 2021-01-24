@@ -12,3 +12,13 @@ app/www/
 app/platforms/
 app/plugins/
 /.vscode
+/api/public/vendor/
+/api/public/locales/
+/api/public/img/
+/api/public/utils/
+/api/public/fonts/
+/api/public/main.js
+/api/public/index.html
+/api/public/css/
+/api/public/*.json
+/api/public/api_*

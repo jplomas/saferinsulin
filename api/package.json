@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/jplomas/saferinsulin.git"
   },
-  "author": "QRL contributors <info@theqrl.org> (https://theqrl.org)",
+  "author": "JP Lomas <jp@lomas.doctor>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jplomas/saferinsulin/issues"
@@ -23,7 +23,10 @@
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "http-errors": "~1.6.3",
-    "insulin-calc": "^1.2.0",
+    "insulin-calc": "^1.2.1",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }

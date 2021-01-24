@@ -12,12 +12,19 @@
     "build": "npm run gulp && npm run browserify && npm run cp",
     "nyc": "nyc --reporter=html --reporter=text mocha ./test.js",
     "coverage": "nyc --reporter=text-lcov mocha ./test.js | coveralls",
+    "apidoc": "apidoc -i api/routes/ -o api/public/",
     "zip": "zip -r app.zip app"
   },
   "homepage": "https://saferinsulin.org",
   "bugs": {
     "url": "https://github.com/jplomas/saferinsulin/issues",
     "email": "jp@lomas.doctor"
+  },
+  "apidoc": {
+    "title": "saferinsulin.org API",
+    "version": "1.0.0",
+    "url": "https://api.saferinsulin.org/v1",
+    "name": "saferinsulin.org API"
   },
   "files": [
     "/js/insulin-calc.js"
@@ -36,6 +43,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.0",
     "@babel/preset-env": "^7.6.0",
+    "apidoc": "^0.26.0",
     "browser-sync": "^2.26.13",
     "browserify": "^16.5.0",
     "chai": "^4.2.0",

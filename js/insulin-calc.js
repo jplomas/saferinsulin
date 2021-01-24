@@ -76,33 +76,41 @@ var startingRate = function (value) {
   var bg = parseFloat(value);
   var result = false;
   var rate = '';
+  var rateNum = 0;
   if (bg <= 4) {
     result = 'Treat hypoglycaemia according to protocol';
     rate = 'N/A';
+    rateNum = 0;
   }
   if (bg > 4 && bg <= 10) {
     result = 'No insulin required - recheck 4-6 hourly';
     rate = 'N/A';
+    rateNum = 0;
   }
   if (bg > 10 && bg <= 12) {
     result = 'Start insulin at 1 unit/hr';
     rate = '1';
+    rateNum = 1;
   }
   if (bg > 12 && bg <= 15) {
     result = 'Start insulin at 2 units/hr';
     rate = '2';
+    rateNum = 2;
   }
   if (bg > 15 && bg <= 18) {
     result = 'Start insulin at 3 units/hr';
     rate = '3';
+    rateNum = 3;
   }
   if (bg > 18) {
     result = 'Start insulin at 4 units/hr';
     rate = '4';
+    rateNum = 4;
   }
   if (bg < 0) {
     result = false;
     rate = '';
+    rateNum = 0;
   }
   var hex = createGovernance({ f: 'a', glucose: value });
   return { advice: { type: 'normal', text: [result] }, rate: rate, hex: hex };
