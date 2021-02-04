@@ -1,5 +1,5 @@
 var express = require('express');
-var calc = require('insulin-calc/js/insulin-calc');
+var calc = require('insulin-calc');
 
 var router = express.Router();
 

@@ -5,11 +5,18 @@
   "main": "app.js",
   "scripts": {
     "test": "test.js",
-    "start": "nodemon ./bin/www"
+    "start": "apidoc -i ./routes/ -o ./public/ && nodemon ./bin/www",
+    "apidoc": "apidoc -i ./routes/ -o ./public/"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jplomas/saferinsulin.git"
+  },
+  "apidoc": {
+    "title": "saferinsulin.org API",
+    "version": "1.0.0",
+    "url": "https://api.saferinsulin.org/v1",
+    "name": "saferinsulin.org API"
   },
   "author": "JP Lomas <jp@lomas.doctor>",
   "license": "MIT",
@@ -27,6 +34,7 @@
     "morgan": "~1.9.1"
   },
   "devDependencies": {
+    "apidoc": "^0.26.0",
     "nodemon": "^2.0.7"
   }
 }
