@@ -1,7 +1,7 @@
 {
   "name": "saferinsulin-api",
   "version": "1.0.0",
-  "description": "saferinsulin.org project API",
+  "description": "saferinsulin.org API and documentation",
   "main": "app.js",
   "scripts": {
     "test": "test.js",
@@ -14,9 +14,27 @@
   },
   "apidoc": {
     "title": "saferinsulin.org API",
-    "version": "1.0.0",
-    "url": "https://api.saferinsulin.org/v1",
-    "name": "saferinsulin.org API"
+    "version": "1.2.3",
+    "template": {
+      "withGenerator": false
+    },
+    "url": "https://api.saferinsulin.org",
+    "name": "saferinsulin.org API",
+    "description": "",
+    "order": [
+      "POST",
+      "GET",
+      "PostStart",
+      "PostContinue",
+      "PostCheck",
+      "GetStart",
+      "GetContinue",
+      "GetCheck"
+    ],
+    "header": {
+      "title": "Introduction",
+      "filename": "header.md"
+    }
   },
   "author": "JP Lomas <jp@lomas.doctor>",
   "license": "MIT",

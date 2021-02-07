@@ -328,10 +328,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/start', startInsulinRouter);
-app.use('/continue', continueInsulinRouter);
-app.use('/check', checkRouter);
+app.use('/v1/', indexRouter);
+app.use('/v1/start', startInsulinRouter);
+app.use('/v1/continue', continueInsulinRouter);
+app.use('/v1/check', checkRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res) {
