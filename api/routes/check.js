@@ -16,10 +16,17 @@ var router = express.Router();
  * @apiSuccess {Number} last Previous glucose parameter passed to function [b only]
  * @apiSuccess {Number} rate Rate parameter passed to function [b only]
  * @apiSuccess {String} date Date the function was invoked
+ * @apiError InvalidGovernanceCode API was supplied a missing or invalid governance code which could not be processed
  */
-router.get('/:hex', function (req, res, next) {
+router.get('/:hex?', function (req, res, next) {
   var result = calc.governance(req.params.hex);
-  res.send(result);
+  if (result === null) {
+    res.statusCode = 400;
+    res.statusMessage = 'InvalidGovernanceCode';
+    res.send();
+  } else {
+    res.send(result);
+  }
 });
 
 module.exports = router;

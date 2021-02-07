@@ -20,13 +20,15 @@ var router = express.Router();
  * @apiSuccess {String[]} advice.text Line by line advice text
  * @apiSuccess {String} hex Governance hexcode
  */
-router.get('/glucose/:glucose/previous/:previous/rate/:rate', function (req, res, next) {
+router.get('/glucose/:glucose?/previous/:previous?/rate/:rate?', function (req, res, next) {
     var { glucose, previous, rate } = req.params;
   var result = calc.ongoingRate(glucose, previous, rate);
   if (result) {
     res.send(result);
   } else {
-    res.send({error: 'Invalid parameters'})
+        res.statusCode = 400;
+        res.statusMessage = 'InvalidParameters';
+        res.send();
   }
 });
 
