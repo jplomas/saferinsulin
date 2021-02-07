@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 var express = require('express');
 var calc = require('insulin-calc');
 
@@ -18,7 +19,10 @@ var router = express.Router();
  * @apiSuccess {String[]} advice.text Line by line advice text
  * @apiSuccess {String} hex Governance hexcode
  */
-router.get('/glucose/:glucose', function (req, res, next) {
+router.get('/glucose/:glucose', function (req, res) {
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log('======================================================');
+  console.log({ ip: ip, request: req.params });
   var glucose = parseFloat(req.params.glucose);
   // var glucose = 13.2;
   var result = calc.startingRate(glucose);

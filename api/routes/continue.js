@@ -1,3 +1,4 @@
+/* eslint no-console:0 */
 var express = require('express');
 var calc = require('insulin-calc');
 
@@ -20,15 +21,18 @@ var router = express.Router();
  * @apiSuccess {String[]} advice.text Line by line advice text
  * @apiSuccess {String} hex Governance hexcode
  */
-router.get('/glucose/:glucose?/previous/:previous?/rate/:rate?', function (req, res, next) {
-    var { glucose, previous, rate } = req.params;
+router.get('/glucose/:glucose?/previous/:previous?/rate/:rate?', function (req, res) {
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log('======================================================');
+  console.log({ ip: ip, request: req.params });
+  var { glucose, previous, rate } = req.params;
   var result = calc.ongoingRate(glucose, previous, rate);
   if (result) {
     res.send(result);
   } else {
-        res.statusCode = 400;
-        res.statusMessage = 'InvalidParameters';
-        res.send();
+    res.statusCode = 400;
+    res.statusMessage = 'InvalidParameters';
+    res.send();
   }
 });
 

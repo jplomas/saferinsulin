@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 var express = require('express');
 var calc = require('insulin-calc');
 
@@ -18,7 +19,10 @@ var router = express.Router();
  * @apiSuccess {String} date Date the function was invoked
  * @apiError InvalidGovernanceCode API was supplied a missing or invalid governance code which could not be processed
  */
-router.get('/:hex?', function (req, res, next) {
+router.get('/:hex?', function (req, res) {
+  var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  console.log('======================================================');
+  console.log({ ip: ip, request: req.params });
   var result = calc.governance(req.params.hex);
   if (result === null) {
     res.statusCode = 400;
