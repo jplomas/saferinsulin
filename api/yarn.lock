@@ -763,10 +763,10 @@ ini@~1.3.0:
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.8.tgz#a29da425b48806f34767a4efce397269af28432c"
   integrity sha512-JV/yugV2uzW5iMRSiZAyDtQd+nxtUnjeLt0acNdw98kKLrvuRVyB80tsREOE7yvGVgalhZ6RNXCmEHkUKBKxew==
 
-insulin-calc@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/insulin-calc/-/insulin-calc-1.2.1.tgz#c964f7ee8a9847d48eaeedfd1467c641ca3d54ae"
-  integrity sha512-f8JbaIpLCdtImEuz7B7IjmB5chGK6SaYIxK1wA+nhUEz6T7pB22NJzha8+U5Er3FgMtfE1PdV35RCeLfh4Qcqg==
+insulin-calc@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/insulin-calc/-/insulin-calc-1.2.3.tgz#86cb70a10a72eda7856454d882b36794c1b7f78e"
+  integrity sha512-gJUmr4ccC5RF+NEBTdLuwLTXsIm+2vkVxFU3EE82r/kdssgd2y8Q0yd3NNILW/Awd6oBfn8pEcE8qGfjllxKag==
   dependencies:
     fastclick "^1.0.6"
 

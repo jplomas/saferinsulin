@@ -113,7 +113,12 @@ var startingRate = function (value) {
     rateNum = 0;
   }
   var hex = createGovernance({ f: 'a', glucose: value });
-  return { advice: { type: 'normal', text: [result] }, rate: rate, hex: hex };
+  return {
+    advice: { type: 'normal', text: [result] },
+    rate: rate,
+    rateNum: rateNum,
+    hex: hex,
+  };
 };
 
 var ongoingRate = function (current, previous, rate) {
