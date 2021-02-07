@@ -1,11 +1,12 @@
-/* eslint no-console: 0 */
-// var createError = require('http-errors');
+/* eslint no-console: 0, quotes: 0 */
 
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var calc = require('insulin-calc');
+var compression = require('compression');
+var helmet = require('helmet');
 
 var indexRouter = require('./routes/index');
 var startInsulinRouter = require('./routes/start');
@@ -13,6 +14,18 @@ var continueInsulinRouter = require('./routes/continue');
 var checkRouter = require('./routes/check');
 
 var app = express();
+
+// Set Content Security Policies
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      'script-src': ["'self'", "'unsafe-eval'"],
+    },
+  }),
+);
+
+app.use(compression());
 
 // tests
 console.log('Self-test in progress...');
@@ -296,7 +309,6 @@ if (d === 'Fri Nov 01 2019 13:27:00 GMT+0000') {
   passed += 1;
   console.log('   ... Test 49e passed');
 }
-
 
 console.log(`Self-test: ${passed}/57 tests passed`);
 if (passed !== 57) {

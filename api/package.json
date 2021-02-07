@@ -25,10 +25,12 @@
   },
   "homepage": "https://github.com/jplomas/saferinsulin#readme",
   "dependencies": {
+    "compression": "^1.7.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "^4.17.1",
     "hbs": "^4.1.1",
+    "helmet": "^4.4.1",
     "http-errors": "~1.6.3",
     "insulin-calc": "^1.2.3",
     "morgan": "~1.9.1"
