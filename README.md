@@ -19,10 +19,10 @@ This is positively encouraged, as it gives resiliance to the availability of the
 
 - ensure yarn installed
 - clone repository
-- run ``yarn``
-- run ``yarn run build``
+- run ``npm install``
+- run ``npm run build``
 - the website will be in the ``dist/`` folder, the app version ready to be packaged with Phonegap Build (or other Cordova-based toolset) will be in the ``app/`` folder
-- if using Phonegap Build, ``yarn run zip`` will prepare the app for upload
+- if using Phonegap Build, ``npm run zip`` will prepare the app for upload
 
 ### NPM module for calculator component
 
