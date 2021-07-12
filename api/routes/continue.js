@@ -25,7 +25,9 @@ router.get('/glucose/:glucose?/previous/:previous?/rate/:rate?', function (req, 
   var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log('======================================================');
   console.log({ ip: ip, request: req.params });
-  var { glucose, previous, rate } = req.params;
+  var glucose = parseFloat(req.params.glucose);
+  var previous = parseFloat(req.params.previous);
+  var rate = parseFloat(req.params.rate);
   var result = calc.ongoingRate(glucose, previous, rate);
   if (result) {
     res.send(result);
@@ -57,7 +59,9 @@ router.post('/', function (req, res) {
   var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
   console.log('======================================================');
   console.log({ ip: ip, request: req.body });
-  var { glucose, previous, rate } = req.body;
+  var glucose = parseFloat(req.body.glucose);
+  var previous = parseFloat(req.body.previous);
+  var rate = parseFloat(req.body.rate);
   var result = calc.ongoingRate(glucose, previous, rate);
   if (result) {
     res.send(result);

@@ -73,6 +73,8 @@ function createGovernance(obj) {
 }
 
 var startingRate = function (value) {
+  if (arguments.length !== 1) { return false; }
+  if (Number.isNaN(parseFloat(value))) { return false; }
   var bg = parseFloat(value);
   var result = false;
   var rate = '';

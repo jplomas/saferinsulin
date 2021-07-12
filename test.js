@@ -28,13 +28,13 @@ describe('Function when starting patient on Insulin', () => {
     const r = calc.startingRate(60);
     assert.equal(r.rate, 4);
   });
-  it('When called with no parameter will report a rate of false', () => {
+  it('When called with no parameter will return false', () => {
     const r = calc.startingRate();
-    assert.equal(r.rate, false);
+    assert.equal(r, false);
   });
-  it('When called with a string that cannot be parsed into a float reports a rate of false', () => {
+  it('When called with a string that cannot be parsed into a float will return false', () => {
     const r = calc.startingRate('NULL');
-    assert.equal(r.rate, false);
+    assert.equal(r, false);
   });
   it('When called with a -ve value reports a rate of false', () => {
     const r = calc.startingRate(-10.2);

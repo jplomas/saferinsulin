@@ -1,6 +1,6 @@
 {
   "name": "insulin-calc",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "description": "Safer Insulin Project",
   "main": "js/insulin-calc.js",
   "browser": "js/insulin-calc.js",
