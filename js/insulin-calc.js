@@ -76,6 +76,7 @@ var startingRate = function (value) {
   if (arguments.length !== 1) { return false; }
   if (Number.isNaN(parseFloat(value))) { return false; }
   var bg = parseFloat(value);
+  if (bg < 0) { return false; }
   var result = false;
   var rate = '';
   var rateNum = 0;

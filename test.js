@@ -38,7 +38,7 @@ describe('Function when starting patient on Insulin', () => {
   });
   it('When called with a -ve value reports a rate of false', () => {
     const r = calc.startingRate(-10.2);
-    assert.equal(r.rate, false);
+    assert.equal(r, false);
   });
 });
 
