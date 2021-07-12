@@ -1,6 +1,6 @@
 {
-  "name": "insulin-calc",
-  "version": "1.2.4",
+x  "name": "insulin-calc",
+  "version": "1.2.6",
   "description": "Safer Insulin Project",
   "main": "js/insulin-calc.js",
   "browser": "js/insulin-calc.js",
@@ -13,7 +13,7 @@
     "nyc": "nyc --reporter=html --reporter=text mocha ./test.js",
     "coverage": "nyc --reporter=text-lcov mocha ./test.js | coveralls",
     "zip": "zip -r app.zip app",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
   },
   "homepage": "https://saferinsulin.org",
   "bugs": {
