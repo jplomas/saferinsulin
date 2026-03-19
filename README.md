@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> No longer maintained here.  
+> The project has been divided into modules and housed at: https://github.com/saferinsulin
+
 # Safer Insulin: Critical Care Insulin Calculator
 
 [![npm version](https://badge.fury.io/js/insulin-calc.svg)](https://badge.fury.io/js/insulin-calc)
